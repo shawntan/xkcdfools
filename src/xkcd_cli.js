@@ -190,12 +190,12 @@ Filesystem = {
 	'welcome.txt': {type:'file', read:function(terminal) {
 		terminal.print($('<h4>').text('CONGRATULATIONS!'));
 		terminal.print('You\'ve found this site!');
-		terminal.print('You\'re invited to the NUS Hackers welcome tea on the 02-09-2011');
+		terminal.print('You\'re invited to the NUS Hackers Welcome Tea on the 02-09-2011');
 	}},
 	'license.txt': {type:'file', read:function(terminal) {
 		terminal.print($('<p>').html('Client-side logic for Wordpress CLI theme :: <a href="http://thrind.xamai.ca/">R. McFarland, 2006, 2007, 2008</a>'));
 		terminal.print($('<p>').html('jQuery rewrite and overhaul :: <a href="http://www.chromakode.com/">Chromakode, 2010</a>'));
-		terminal.print($('<p>').html('Modified for <a href="nushackers.org">NUS Hackers 2011</a>'));
+		terminal.print($('<p>').html('Modified by <a href="http://nushackers.org">NUS Hackers 2011</a>'));
 		terminal.print();
 		$.each([
 			'This program is free software; you can redistribute it and/or',

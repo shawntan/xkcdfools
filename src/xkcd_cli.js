@@ -216,8 +216,8 @@ Filesystem = {
 		});
 	}}
 };
-Filesystem['blog'] = Filesystem['blag'] = linkFile('http://nushackers.org');
-Filesystem['forums'] = Filesystem['fora'] = linkFile('http://groups.google.com/group/nushackers?hl=en_US');
+Filesystem['blog'] = linkFile('http://nushackers.org');
+Filesystem['forums'] = linkFile('http://groups.google.com/group/nushackers?hl=en_US');
 Filesystem['about'] = linkFile('http://nushackers.org/about/');
 TerminalShell.pwd = Filesystem;
 
@@ -293,17 +293,7 @@ TerminalShell.commands['rm'] = function(terminal, flags, path) {
 };
 
 TerminalShell.commands['cheat'] = function(terminal) {
-	terminal.print($('<a>').text('*** GOD MODE ENABLED ***').attr('href', 'http://nushackers.org/join/'));
-};
-
-TerminalShell.commands['reddit'] = function(terminal, num) {
-	num = Number(num);
-	if (num) {
-		url = 'http://xkcd.com/'+num+'/';
-	} else {
-		var url = window.location;
-	}
-	terminal.print($('<iframe src="http://www.reddit.com/static/button/button1.html?width=140&url='+encodeURIComponent(url)+'&newwindow=1" height="22" width="140" scrolling="no" frameborder="0"></iframe>'));
+	terminal.print($('<a>').text('*** AWESOME MODE ENABLED ***').attr('href', 'http://nushackers.org/join/'));
 };
 
 TerminalShell.commands['wget'] = TerminalShell.commands['curl'] = function(terminal, dest) {
@@ -323,22 +313,6 @@ TerminalShell.commands['wget'] = TerminalShell.commands['curl'] = function(termi
 	}
 };
 
-TerminalShell.commands['write'] =
-TerminalShell.commands['irc'] = function(terminal, nick) {
-	if (nick) {
-		$('.irc').slideUp('fast', function() {
-			$(this).remove();
-		});
-		var url = "http://widget.mibbit.com/?server=irc.foonetic.net&channel=%23xkcd";
-		if (nick) {
-			url += "&nick=" + encodeURIComponent(nick);
-		}
-		TerminalShell.commands['curl'](terminal, url).addClass('irc');
-	} else {
-		terminal.print('usage: irc <nick>');
-	}
-};
-
 TerminalShell.commands['unixkcd'] = function(terminal, nick) {
 	TerminalShell.commands['curl'](terminal, "http://www.xkcd.com/unixkcd/");
 };
@@ -353,7 +327,7 @@ TerminalShell.commands['apt-get'] = function(terminal, subcmd) {
 			if (($.browser.name == 'msie') || ($.browser.name == 'firefox' && $.browser.versionX < 3)) {
 				terminal.print($('<p>').append($('<a>').attr('href', 'http://abetterbrowser.org/').text('To complete installation, click here.')));
 			} else {
-				terminal.print('This looks pretty good to me.');
+				terminal.print('Already using an awesome browser!');
 			}
 		} else if (subcmd == 'dist-upgrade') {
 			var longNames = {'win':'Windows', 'mac':'OS X', 'linux':'Linux'};
@@ -394,7 +368,8 @@ TerminalShell.commands['man'] = function(terminal, what) {
 		'last': 'Man, last night was AWESOME.',
 		'help': 'Man, help me out here.',
 		'next': 'Request confirmed; you will be reincarnated as a man next.',
-		'cat':  'You are now riding a half-man half-cat.'
+		'cat':  'You are now riding a half-man half-cat.',
+		'man': 'Holy shit, man on man action!'
 	};
 	if (!oneLiner(terminal, what, pages)) {
 		terminal.print('Oh, I\'m sure you can figure it out.');
@@ -416,18 +391,18 @@ TerminalShell.commands['locate'] = function(terminal, what) {
 
 Adventure = {
 	rooms: {
-		0:{description:'You are at a computer using unixkcd.', exits:{west:1, south:10}},
-		1:{description:'Life is peaceful there.', exits:{east:0, west:2}},
-		2:{description:'In the open air.', exits:{east:1, west:3}},
-		3:{description:'Where the skies are blue.', exits:{east:2, west:4}},
+		0:{description:'You are at a computer at SoC.', exits:{west:1, south:10}},
+		1:{description:'Life is not peaceful here.', exits:{east:0, west:2}},
+		2:{description:'In the server room.', exits:{east:1, west:3}},
+		3:{description:'Study cartels. The sweet stink of students mugging.', exits:{east:2, west:4}},
 		4:{description:'This is what we\'re gonna do.', exits:{east:3, west:5}},
-		5:{description:'Sun in wintertime.', exits:{east:4, west:6}},
+		5:{description:'Suns are hotter during reading week.', exits:{east:4, west:6}},
 		6:{description:'We will do just fine.', exits:{east:5, west:7}},
 		7:{description:'Where the skies are blue.', exits:{east:6, west:8}},
 		8:{description:'This is what we\'re gonna do.', exits:{east:7}},
 		10:{description:'A dark hallway.', exits:{north:0, south:11}, enter:function(terminal) {
 				if (!Adventure.status.lamp) {
-					terminal.print('You are eaten by a grue.');
+					terminal.print('You are eaten by a troll.');
 					Adventure.status.alive = false;
 					Adventure.goTo(terminal, 666);
 				}
@@ -515,6 +490,7 @@ TerminalShell.fallback = function(terminal, cmd) {
 		'make me a sandwich': 'What? Make it yourself.',
 		'make love': 'I put on my robe and wizard hat.',
 		'i read the source code': '<3',
+		'lex': 'Superman kicks your ass!',
 		'pwd': 'You are in a maze of twisty passages, all alike.',
 		'lpr': 'PC LOAD LETTER',
 		'hello joshua': 'How about a nice game of Global Thermonuclear War?',
@@ -522,9 +498,9 @@ TerminalShell.fallback = function(terminal, cmd) {
 		'date': 'March 32nd',
 		'hello': 'Why hello there!',
 		'who': 'Doctor Who?',
-		'xkcd': 'Yes?',
+		'xkcd': 'Yes, we forked it.',
 		'su': 'God mode activated. Remember, with great power comes great ... aw, screw it, go have fun.',
-		'fuck': 'I have a headache.',
+		'fuck': 'Perhaps you mean finger?',
 		'whoami': 'You are Richard Stallman.',
 		'nano': 'Seriously? Why don\'t you just use Notepad.exe? Or MS Paint?',
 		'top': 'It\'s up there --^',
@@ -562,8 +538,7 @@ TerminalShell.fallback = function(terminal, cmd) {
 			]));
 		} else if  (cmd == "hint") {
 			terminal.print(randomChoice([
- 				'We offer some really nice polos.',
- 				$('<p>').html('This terminal will remain available at <a href="http://xkcd.com/unixkcd/">http://xkcd.com/unixkcd/</a>'),
+ 				'We did this for fun, and forked it from unixkcd',
  				'Use the source, Luke!',
  				'There are cheat codes.'
  			]));

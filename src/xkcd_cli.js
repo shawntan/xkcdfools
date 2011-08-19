@@ -188,9 +188,9 @@ function linkFile(url) {
 
 Filesystem = {
 	'welcome.txt': {type:'file', read:function(terminal) {
-		terminal.print($('<h4>').text('Welcome to the unixkcd console.'));
-		terminal.print('To navigate the comics, enter "next", "prev", "first", "last", "display", or "random".');
-		terminal.print('Use "ls", "cat", and "cd" to navigate the filesystem.');
+		terminal.print($('<h4>').text('CONGRATULATIONS!'));
+		terminal.print('You\'ve found this site!');
+		terminal.print('You\'re invited to the NUS Hackers welcome tea on the 02-09-2011');
 	}},
 	'license.txt': {type:'file', read:function(terminal) {
 		terminal.print($('<p>').html('Client-side logic for Wordpress CLI theme :: <a href="http://thrind.xamai.ca/">R. McFarland, 2006, 2007, 2008</a>'));
@@ -594,10 +594,10 @@ $(document).ready(function() {
 		xkcd.get(null, function(data) {
 			if (data) {
 				xkcd.latest = data;
-				$('#screen').one('cli-ready', function(e) {
+				/*$('#screen').one('cli-ready', function(e) {
 					Terminal.runCommand('cat welcome.txt');
-				});
-				Terminal.runCommand('display '+xkcd.latest.num+'/'+pathFilename(xkcd.latest.img));
+				});*/
+				Terminal.runCommand('cat welcome.txt');
 			} else {
 				noData();
 			}

@@ -219,6 +219,7 @@ Filesystem = {
 Filesystem['blog'] = linkFile('http://nushackers.org');
 Filesystem['forums'] = linkFile('http://groups.google.com/group/nushackers?hl=en_US');
 Filesystem['about'] = linkFile('http://nushackers.org/about/');
+Filesystem['code'] = linkFile('http://github.com/nushackers');
 TerminalShell.pwd = Filesystem;
 
 TerminalShell.commands['cd'] = function(terminal, path) {
@@ -501,6 +502,7 @@ TerminalShell.fallback = function(terminal, cmd) {
 		'xkcd': 'Yes, we forked it.',
 		'su': 'God mode activated. Remember, with great power comes great ... aw, screw it, go have fun.',
 		'fuck': 'Perhaps you mean finger?',
+		'touch': 'Eww, stop touching me!',
 		'whoami': 'You are Richard Stallman.',
 		'nano': 'Seriously? Why don\'t you just use Notepad.exe? Or MS Paint?',
 		'top': 'It\'s up there --^',
@@ -545,7 +547,7 @@ TerminalShell.fallback = function(terminal, cmd) {
 		} else if (cmd == 'find kitten') {
 			terminal.print($('<iframe width="800" height="600" src="http://www.robotfindskitten.net/rfk.swf"></iframe>'));
 		} else if (cmd == 'buy stuff') {
-			Filesystem['store'].enter();
+			Filesystem['code'].enter();
 		} else if (cmd == 'time travel') {
 			xkcdDisplay(terminal, 630);
 		} else if (/:\(\)\s*{\s*:\s*\|\s*:\s*&\s*}\s*;\s*:/.test(cmd)) {
